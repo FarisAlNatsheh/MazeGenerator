@@ -21,8 +21,8 @@ public class Menu extends JFrame implements ActionListener{
 	private JSpinner spinnerS = new JSpinner(sm2);
 	private JLabel labelC = new JLabel("Cell size: ");
 	private JLabel labelS = new JLabel("Map size: ");
-	private JButton def = new JButton("Default");
-	private JButton genMaze = new JButton("Generate Maze");
+	private JButton def = new JButton("Growing Tree");
+	private JButton genMaze = new JButton("Aldous-Broder");
 	
 	public Menu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,10 +44,10 @@ public class Menu extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == def) {
-			new Window(50,10);
+			new Window((int) spinnerS.getValue(),(int) spinnerC.getValue(),1);
 		}
 		if(e.getSource() == genMaze) {
-			new Window((int) spinnerS.getValue(),(int) spinnerC.getValue());
+			new Window((int) spinnerS.getValue(),(int) spinnerC.getValue(),0);
 		}
 
 	}
