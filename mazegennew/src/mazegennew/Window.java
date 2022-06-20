@@ -47,7 +47,7 @@ public class Window extends JFrame implements KeyListener{
 			cellsG.add(cells[rand(0,SIZE-1)][rand(0,SIZE-1)]);
 			growingTree(cellsG.get(0));
 		}
-		else if(mazeType == 2)
+		else if(mazeType == 0)
 			maze(cells[rand(0,SIZE-1)][rand(0,SIZE-1)]);
 		panel = new JPanel();
 		drawPanel = new JPanel() {
@@ -144,7 +144,7 @@ public class Window extends JFrame implements KeyListener{
 	}
 
 	public void growingTree(Cell c) {
-		iterations++;
+		
 		int rand = getRandomUnvisNeighbor(c);
 		if(rand == 1) {
 			cells[c.getX()][c.getY()].setRight(false);
@@ -173,15 +173,15 @@ public class Window extends JFrame implements KeyListener{
 		else if(rand == -1) {
 			cellsG.remove(c);
 		}
-		if(cellsG.size() > 0)
-			growingTree(cellsG.get(cellsG.size()-1));
+		if(cellsG.size() > 0) {
+			iterations++;
+			growingTree(cellsG.get(cellsG.size()-1));	
+		}
 		else {
 			System.out.println("Iterations: "+ iterations);
 			iterations = 0;
 			return;
 		}
-		
-
 	}
 
 	public boolean inBounds(int x) {
